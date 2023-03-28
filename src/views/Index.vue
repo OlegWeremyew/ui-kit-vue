@@ -1,13 +1,3 @@
 <template>
-  <h1>Hello</h1>
+  <h1 class="heading-1">Добро пожаловать в наш UI Kit</h1>
 </template>
-
-<script lang="ts">
-export default {
-  name: "Index.vue"
-}
-</script>
-
-<style scoped>
-
-</style>
