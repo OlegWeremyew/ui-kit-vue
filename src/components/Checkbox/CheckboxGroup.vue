@@ -1,5 +1,5 @@
-<script setup>
-  import Checkbox from '@/components/Checkbox/Checkbox.vue'
+<script setup lang="ts">
+  import Checkbox from '@/components/Checkbox/Checkbox/Checkbox.vue'
 
   const emit = defineEmits(['update:value'])
   const props = defineProps({
@@ -14,15 +14,15 @@
     options: {
       type: Array,
       required: true,
-      validator: (value) => {
-        const hasNameKey = value.every((option) => Object.keys(option).includes('name'))
-        const hasIdKey = value.every((option) => Object.keys(option).includes('id'))
+      validator: (value: any) => {
+        const hasNameKey = value.every((option: string) => Object.keys(option).includes('name'))
+        const hasIdKey = value.every((option: string) => Object.keys(option).includes('id'))
         return hasNameKey && hasIdKey
       }
     }
   })
 
-  const check = (params) => {
+  const check = (params: any) => {
     let updateValue = [...props.value]
     if (params.checked) {
       updateValue.push(params.optionId)

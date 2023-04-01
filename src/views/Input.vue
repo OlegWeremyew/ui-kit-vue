@@ -1,19 +1,19 @@
-<script setup>
-import {ref, computed} from 'vue'
-import useVuelidate from '@vuelidate/core'
+<script setup lang="ts">
+import {ref, computed, Ref} from 'vue'
+import useVuelidate, {Validation} from '@vuelidate/core'
 import {helpers, minLength, maxLength, numeric, email, sameAs} from '@vuelidate/validators'
 
-import Input from '@/components/Input.vue'
-import Button from '@/components/Button.vue'
+import Input from '@/components/Input/Input.vue'
+import Button from '@/components/Button/Button.vue'
 
-const nameField = ref('')
-const emailField = ref('')
-const luckyField = ref('')
-const passwordField = ref('')
-const confirmPasswordField = ref('')
-const frontendField = ref('')
+const nameField = ref<string>('')
+const emailField = ref<string>('')
+const luckyField = ref<string>('')
+const passwordField = ref<string>('')
+const confirmPasswordField = ref<string>('')
+const frontendField = ref<string>('')
 
-const mustBeFrontend = (value) => value.includes('frontend')
+const mustBeFrontend = (value: string): boolean => value.includes('frontend')
 
 const rules = computed(() => ({
   nameField: {
@@ -31,14 +31,14 @@ const rules = computed(() => ({
   },
   frontendField: {
     frontendField: helpers.withMessage('Строка должна содержать слово frontend', mustBeFrontend)
-  }
+  },
 }))
 
-const v = useVuelidate(rules, {nameField, emailField, luckyField, confirmPasswordField, frontendField})
+const validate: Ref<Validation> = useVuelidate(rules, {nameField, emailField, luckyField, confirmPasswordField, frontendField})
 
-const submitForm = () => {
-  v.value.$touch()
-  if (v.value.$error) return
+const submitForm = (): void => {
+  validate.value.$touch()
+  if (validate.value.$error) return
   alert('Form submitted')
 }
 </script>
@@ -48,47 +48,52 @@ const submitForm = () => {
 
   <form @submit.prevent="submitForm">
     <Input
-      label="Your name"
-      name="name"
-      placeholder="Input your name"
-      v-model:value="v.nameField.$model"
-      :error="v.nameField.$errors"/>
-      
-    <Input
-      label="Your email"
-      name="email"
-      placeholder="Input your email"
-      v-model:value="v.emailField.$model"
-      :error="v.emailField.$errors"/>
-      
-    <Input
-      label="Your lucky number"
-      name="lucky"
-      placeholder="Input your lucky number"
-      v-model:value="v.luckyField.$model"
-      :error="v.luckyField.$errors"/>
-      
-    <Input
-      label="Your password"
-      name="password"
-      placeholder="Please input password"
-      v-model:value="passwordField"
-      type="password"/>
-      
-    <Input
-      label="Confirm password"
-      name="confirm"
-      placeholder="Please confirm password"
-      v-model:value="v.confirmPasswordField.$model"
-      :error="v.confirmPasswordField.$errors"
-      type="password"/>
+        label="Your name"
+        name="name"
+        placeholder="Input your name"
+        v-model:value="validate.nameField.$model"
+        :error="validate.nameField.$errors"
+    />
 
     <Input
-      label="Frontend string"
-      name="frontend"
-      placeholder="Input string with frontend"
-      v-model:value="v.frontendField.$model"
-      :error="v.frontendField.$errors"/>
+        label="Your email"
+        name="email"
+        placeholder="Input your email"
+        v-model:value="validate.emailField.$model"
+        :error="validate.emailField.$errors"
+    />
+
+    <Input
+        label="Your lucky number"
+        name="lucky"
+        placeholder="Input your lucky number"
+        v-model:value="validate.luckyField.$model"
+        :error="validate.luckyField.$errors"
+    />
+
+    <Input
+        label="Your password"
+        name="password"
+        placeholder="Please input password"
+        v-model:value="passwordField"
+        type="password"/>
+
+    <Input
+        label="Confirm password"
+        name="confirm"
+        placeholder="Please confirm password"
+        v-model:value="validate.confirmPasswordField.$model"
+        :error="validate.confirmPasswordField.$errors"
+        type="password"
+    />
+
+    <Input
+        label="Frontend string"
+        name="frontend"
+        placeholder="Input string with frontend"
+        v-model:value="validate.frontendField.$model"
+        :error="validate.frontendField.$errors"
+    />
 
     <Button label="Submit" color="primary"></Button>
   </form>

@@ -1,5 +1,5 @@
-<script setup>
-import Button from '@/components/Button.vue'
+<script setup lang="ts">
+import Button from '@/components/Button/Button.vue'
 
 const eventForButton = () => {
   alert('You clicked danger button')

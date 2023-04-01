@@ -1,20 +1,20 @@
-<script setup>
+<script setup lang="ts">
 import {ref} from 'vue'
-import ProgressBar from '@/components/Progress/ProgressBar.vue'
-import ProgressCircle from '@/components/Progress/ProgressCircle.vue'
-import Button from '@/components/Button.vue'
+import ProgressBar from '@/components/Progress/ProgressBar/ProgressBar.vue'
+import ProgressCircle from '@/components/Progress/ProgressCircle/ProgressCircle.vue'
+import Button from '@/components/Button/Button.vue'
 
-const percentBar = ref(40)
-const percentCircle = ref(60)
+const percentBar = ref<number>(40)
+const percentCircle = ref<number>(60)
 
-const addPercentBar = () => {
+const addPercentBar = (): void => {
   percentBar.value += 10
   if (percentBar.value > 100) {
     percentBar.value = 100
   }
 }
 
-const addPercentCircle = () => {
+const addPercentCircle = (): void => {
   percentCircle.value += 10
   if (percentCircle.value > 100) {
     percentCircle.value = 100
