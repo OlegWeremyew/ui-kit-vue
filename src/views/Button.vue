@@ -8,11 +8,13 @@ const eventForButton = () => {
 
 <template>
   <h1 class="heading-1">Button</h1>
+
   <h2 class="heading-2">Disabled</h2>
   <div class="line">
     <Button label="Primary" color="primary" disabled/>
     <Button label="Secondary" color="second" disabled/>
   </div>
+
   <h2 class="heading-2">Colors</h2>
   <div class="line">
     <Button label="Primary" color="primary" />
@@ -22,6 +24,7 @@ const eventForButton = () => {
     <Button label="Warning" color="warning" />
     <Button label="Danger" color="danger" />
   </div>
+
   <h2 class="heading-2">Rounded</h2>
   <div class="line">
     <Button label="Primary" color="primary" rounded/>
@@ -31,6 +34,7 @@ const eventForButton = () => {
     <Button label="Warning" color="warning" rounded/>
     <Button label="Danger" color="danger" rounded/>
   </div>
+
   <h2 class="heading-2">Outlined</h2>
   <div class="line">
     <Button label="Primary" color="primary" outlined/>
@@ -40,6 +44,7 @@ const eventForButton = () => {
     <Button label="Warning" color="warning" outlined/>
     <Button label="Danger" color="danger" outlined/>
   </div>
+
   <h2 class="heading-2">Icon</h2>
   <div class="line">
     <Button color="primary" icon="heart" outlined/>
@@ -49,12 +54,14 @@ const eventForButton = () => {
     <Button color="warning" icon="lemon" outlined/>
     <Button color="danger" icon="hourglass"/>
   </div>
+
   <h2 class="heading-2">Size</h2>
   <div class="line">
     <Button label="Normal" color="primary" />
     <Button label="Large" color="primary" size="large"/>
   </div>
   <h2 class="heading-2">Event</h2>
+
   <div class="line">
     <Button label="@click" color="danger" @click="eventForButton"/>
   </div>

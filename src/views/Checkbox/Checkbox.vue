@@ -11,7 +11,7 @@ const checkboxDisabledChecked = ref<boolean>(true)
 const switchProfessional = ref<boolean>(false)
 
 const listOfHeroes = ref<HeroesListType>(list)
-const selectedHeroes = ref<string[]>(['h1', 'h3'])
+const selectedHeroes = ref<string[]>(['h1', 'h3',])
 
 </script>
 
@@ -34,14 +34,23 @@ const selectedHeroes = ref<string[]>(['h1', 'h3'])
         name="checkboxDisabled"
         value="I like it"
         :disabled="checkboxDisabled"
-        v-model:checked="checkboxDisabledChecked"/>
+        v-model:checked="checkboxDisabledChecked"
+    />
   </div>
+
   <h2 class="heading-2">Checkbox Group</h2>
+
   <div class="line line_block">
     <p>Selected Heroes: {{ selectedHeroes }}</p>
-    <checkbox-group v-model:value="selectedHeroes" name="heroes" :options="listOfHeroes"/>
+    <checkbox-group
+        v-model:value="selectedHeroes"
+        name="heroes"
+        :options="listOfHeroes"
+    />
   </div>
+
   <h2 class="heading-2">Switch</h2>
+
   <div class="line line_block">
     <p>Switch: {{ switchProfessional }}</p>
     <checkbox
@@ -50,6 +59,7 @@ const selectedHeroes = ref<string[]>(['h1', 'h3'])
         name="switch"
         value="I'm a professional"
         type="switch"
-        v-model:checked="switchProfessional"/>
+        v-model:checked="switchProfessional"
+    />
   </div>
 </template>

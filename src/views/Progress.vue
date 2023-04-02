@@ -6,16 +6,19 @@ import Button from '@/components/Button/Button.vue'
 
 const percentBar = ref<number>(40)
 const percentCircle = ref<number>(60)
+const PROGRESS_STEP = 10
 
 const addPercentBar = (): void => {
-  percentBar.value += 10
+  percentBar.value += PROGRESS_STEP
+
   if (percentBar.value > 100) {
     percentBar.value = 100
   }
 }
-
+0
 const addPercentCircle = (): void => {
-  percentCircle.value += 10
+  percentCircle.value += PROGRESS_STEP
+
   if (percentCircle.value > 100) {
     percentCircle.value = 100
   }
@@ -24,14 +27,29 @@ const addPercentCircle = (): void => {
 
 <template>
   <h1 class="heading-1">Progress</h1>
+
   <h2 class="heading-2">Progress Bar</h2>
   <div class="line line_block">
-    <ProgressBar maxWidth="400px" :percent="percentBar" color="danger"/>
-    <Button label="Add 10%" @click="addPercentBar"/>
+    <ProgressBar
+        maxWidth="400px"
+        :percent="percentBar"
+        color="danger"
+    />
+    <Button
+        label="Add 10%"
+        @click="addPercentBar"
+    />
   </div>
+
   <h2 class="heading-2">Progress Circle</h2>
   <div class="line line_block">
-    <ProgressCircle :percent="percentCircle" color="warning"/>
-    <Button label="Add 10%" @click="addPercentCircle"/>
+    <ProgressCircle
+        :percent="percentCircle"
+        color="warning"
+    />
+    <Button
+        label="Add 10%"
+        @click="addPercentCircle"
+    />
   </div>
 </template>

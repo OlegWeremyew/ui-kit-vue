@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const emits = defineEmits(['update:checkedValue'])
 const props = defineProps({
   name: {
@@ -31,8 +31,8 @@ const props = defineProps({
   },
 })
 
-const handleClick = (event) => {
-  emits('update:checkedValue', event.target.value)
+const handleClick = ({target}: any): void => {
+  emits('update:checkedValue', target.value)
 }
 </script>
 

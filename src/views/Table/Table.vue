@@ -33,9 +33,10 @@ const setSort = (name: SortType): void => {
     } else {
       typeSort.value = 'asc'
     }
-  } else {
-    sortField.value = name
+    return
   }
+
+  sortField.value = name
 }
 </script>
 
@@ -51,17 +52,22 @@ const setSort = (name: SortType): void => {
         v-for="{id, bg, author, title, image} in booksSorting"
         :key="id"
         :columnTemplates="tableSizeColumns"
-        :bgRow="bg">
+        :bgRow="bg"
+    >
       <table-column :columnTitle="tableHeads[0]">
         {{ id }}
       </table-column>
+
       <table-column :columnTitle="tableHeads[1]">
         {{ author }}
       </table-column>
+
       <table-column :columnTitle="tableHeads[2]">
         {{ title }}
       </table-column>
+
       <table-column :image="true" :srcImage="image"/>
+
       <table-column>
         <Button lavel="Read Online"></Button>
       </table-column>

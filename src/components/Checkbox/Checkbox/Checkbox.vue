@@ -1,4 +1,6 @@
-<script setup>
+<script setup lang="ts">
+import {computed} from "vue";
+
 const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
 const props = defineProps({
   name: {
@@ -35,19 +37,25 @@ const props = defineProps({
   },
 })
 
-const handleClick = (event) => {
-  if (props.group) {
-    emits('updateCheckboxGroup', {optionId: props.id, checked: event.target.checked})
+const handleClick = ({target}: any) => {
+  const {group, id} = props
+
+  if (group) {
+    emits('updateCheckboxGroup', {optionId: id, checked: target.checked})
   } else {
-    emits('update:checked', event.target.checked)
+    emits('update:checked', target.checked)
   }
 }
+
+const isSwitchType = computed(():boolean=>{
+  return props.type === 'switch'
+})
 </script>
 
 <template>
-  <div :class="[{'switch-container': type === 'switch'}]">
+  <div :class="[{'switch-container': isSwitchType}]">
     <input
-        :class="[{'checkbox': type === 'checkbox'}, {'switch': type === 'switch'}]"
+        :class="[{'checkbox': type === 'checkbox'}, {'switch': isSwitchType}]"
         type="checkbox"
         :name="name"
         :id="id"
@@ -55,7 +63,7 @@ const handleClick = (event) => {
         :checked="checked"
         :disabled="disabled"
         @input="handleClick($event)">
-    <label :for="id">{{ label }}</label>
+    <label :for="id" style="cursor: pointer">{{ label }}</label>
     <label
         :for="id"
         class="switch__label"

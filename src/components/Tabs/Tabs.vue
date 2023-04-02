@@ -14,7 +14,11 @@ const props = defineProps({
 
 const emit = defineEmits(['changeTab'])
 
-const clickOnTab = (tabName: SelectedType) => {
+const isActiveSelect = (name: string): boolean => {
+  return name === props.selectedTab
+}
+
+const clickOnTab = (tabName: SelectedType): void => {
   emit('changeTab', tabName)
 }
 </script>
@@ -24,10 +28,11 @@ const clickOnTab = (tabName: SelectedType) => {
     <span
         v-for="{name, label} in names"
         :key="name"
-        :class="['tab-nav__item', {'selected': name === selectedTab}]"
+        :class="['tab-nav__item', {'selected': isActiveSelect(name)}]"
         @click="clickOnTab(name)"
     >{{ label }}</span>
   </div>
+
   <div class="tab-content">
     <slot/>
   </div>

@@ -15,7 +15,7 @@ const frontendField = ref<string>('')
 
 const mustBeFrontend = (value: string): boolean => value.includes('frontend')
 
-const rules = computed(() => ({
+const rules = computed((): object => ({
   nameField: {
     minLength: helpers.withMessage(`Минимальная длина: 3 символа`, minLength(3))
   },
@@ -76,7 +76,8 @@ const submitForm = (): void => {
         name="password"
         placeholder="Please input password"
         v-model:value="passwordField"
-        type="password"/>
+        type="password"
+    />
 
     <Input
         label="Confirm password"
@@ -95,6 +96,6 @@ const submitForm = (): void => {
         :error="validate.frontendField.$errors"
     />
 
-    <Button label="Submit" color="primary"></Button>
+    <Button label="Submit" color="primary"/>
   </form>
 </template>

@@ -28,6 +28,10 @@ const props = defineProps({
     type: String,
     default: 'normal',
   },
+  type: {
+    type: String,
+    default: 'button',
+  }
 })
 
 const emit = defineEmits(['click'])
@@ -39,7 +43,7 @@ const clickOnButton = (): void => {
 
 <template>
   <button
-      type="button"
+      :type="type"
       :class="[
           'btn',
           `btn_${color}`,

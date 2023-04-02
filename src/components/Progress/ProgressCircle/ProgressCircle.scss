@@ -4,9 +4,11 @@
     margin-bottom: 20px;
     width: 120px;
     height: 120px;
+
     &-svg {
       transform: rotate(-90deg);
     }
+
     &-percent {
       position: absolute;
       left: 0;
@@ -19,6 +21,7 @@
       font-weight: bold;
       font-size: 18px;
     }
+
     &-line {
       stroke-dasharray: 100;
       transition: .5s;

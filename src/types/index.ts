@@ -5,4 +5,6 @@ export type TabType = {
   label: string
 }
 
+export type TabsType = TabType[]
+
 export type SortType = 'asc' | 'desc'

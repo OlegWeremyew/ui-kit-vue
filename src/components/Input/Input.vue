@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(['update:value'])
 const props = defineProps({
   error: {
@@ -31,8 +31,8 @@ const props = defineProps({
   },
 })
 
-const updateValue = (e) => {
-  emit('update:value', e.target.value)
+const updateValue = ({target}: any): void => {
+  emit('update:value', target.value)
 }
 </script>
 
@@ -45,8 +45,11 @@ const updateValue = (e) => {
         :id="name"
         :placeholder="placeholder"
         :value="value"
-        @input="updateValue">
+        @input="updateValue"
+    >
+
     <label :for="name" class="input-label">{{ label }}</label>
+
     <TransitionGroup>
       <div
           class="form-error"
@@ -55,6 +58,7 @@ const updateValue = (e) => {
         <div class="form-error__message">{{ element.$message }}</div>
       </div>
     </TransitionGroup>
+
   </div>
 </template>
 

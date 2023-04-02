@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   percent: {
     type: Number,
@@ -27,7 +27,8 @@ const props = defineProps({
           r="54"
           fill="none"
           :stroke="`var(--${color}-hover)`"
-          stroke-width="12"/>
+          stroke-width="12"
+      />
       <circle
           class="progress-circle-line"
           :style="[{'stroke-dashoffset': `calc(100 - ${percent})`}]"
@@ -37,7 +38,8 @@ const props = defineProps({
           fill="none"
           :stroke="`var(--${color})`"
           stroke-width="12"
-          pathLength="100"/>
+          pathLength="100"
+      />
     </svg>
   </div>
 
